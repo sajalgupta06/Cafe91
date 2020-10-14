@@ -1,0 +1,317 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap");
+
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+}
+
+
+section.curhead
+{
+    position : relative;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    display:flex;
+    justify-content:space-between;
+    padding:40px 100px;
+    overflow: hidden;
+    clip-path: circle(180vh at 50% -80vh);
+    background:url("../components/img/bg.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    
+}
+.banner section.curhead:before{
+    /* content:'';
+    position: relative;
+    top:0;
+    left:0; */
+    /* width:100%;
+    height:100vh; */
+    /* background:linear-gradient(45deg,#ff0081,#6827b0); */
+    /* background-color: #fff; */
+   
+    /* display:flex; */
+    /* justify-content: center;
+    align-items: center; */
+    /* border-radius:0 0 50% 50%/0 0 100% 100%; 
+    transform:scaleX(1.5); */
+    /* clip-path: circle(180vh at 50% -80vh); */
+     
+}
+section.curhead .stuff
+ {
+     position: relative;
+     z-index: 1;
+     margin:0 auto;
+     max-width: 900px;
+     text-align: left;
+ }
+ section.curhead .stuff h1
+ {
+    
+     color:#fff;
+     font-size: 3em;
+
+ }
+
+header section.curhead .toggle 
+{
+    position: relative;
+    width:30px;
+    height: 2px;
+    cursor:pointer;
+    background:#fff;
+    
+}
+header section.curhead .toggle::before
+{
+    content:'';
+    position: absolute;
+    top:7px;
+    width:100%;
+    height:2px;
+    background:#fff;
+}
+header section.curhead .toggle::after
+{
+    content:'';
+    position: absolute;
+    top:7px;
+    width:100%;
+    height:2px;
+    background:#fff;
+}
+.banner.active header section.curhead .toggle::before{
+    top:50%;
+    left:50%;
+    transform: translate(-50%,50%) rotate(45deg);
+}
+.banner.active header section.curhead .toggle::after{
+    
+    top:50%;
+    left:50%;
+    transform: translate(-50%,50%) rotate(-45deg);
+}
+
+.banner{
+    position: absolute;
+    width: 100%;
+    /* min-height:100vh; */
+    /* padding:100px; */
+    /* display:flex;
+    align-items: center;
+    justify-content: center; */
+    transition: 0.5s;
+    z-index: 2;
+
+
+}
+.banner.active{
+    transform:translateX(-400px);
+}
+#navigation
+{
+    position:fixed;
+    top:0;
+    right:-200px;
+    width: 400px;
+    height:100vh;
+    visibility: hidden;
+    background : #60c5e9;
+  
+    display: grid;
+    place-items: center;
+    transition: 0.5s;
+}
+#navigation.active
+{
+    right:0;
+    height:100%;
+    visibility: visible;
+}
+
+#navigation ul
+{
+    position:relative;
+    display : flex;
+    flex-direction:column;
+}
+#navigation ul li 
+{
+    list-style: none;
+}
+#navigation ul li a 
+{
+    color:#fff;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    font-size : 2em;
+    text-transform: uppercase;
+
+}
+#navigation ul li a:hover
+{
+  transition: 0.5s;
+  color: blue;
+}
+.content
+{
+    max-width : 600px;
+
+}
+.content h2
+{
+    color:#fff;
+    font-size: 2.5em;
+}
+.content h2 span
+{
+    color : #fff;
+    font-size: 3em;
+    font-family: "Grand Hotel";
+    
+}
+.content p 
+{
+    font-size:1.8em;
+    color : #fff;
+    font-weight: 300;
+}
+.content a 
+{
+    position: relative;
+    display : inline-block;
+    margin-top: 20px;
+    background: #fff;
+    color:#000;
+    padding: 10px 30px;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight:500;
+
+}
+
+.sci
+{
+    position: relative;
+    display:flex;
+    flex-direction: column;
+    right:100px;
+    z-index: 2;
+
+}
+.sci li
+{
+    list-style:none;
+
+}
+.sci li a 
+{
+    position: relative;
+    display:grid;
+    place-items:center;
+    width:50px;
+    height:50px;
+    text-decoration:none;
+    border:1px solid #fff;
+    margin:10px 0 0 ;
+
+}
+.sci li a:hover
+{
+    background: #fff;
+
+}
+.sci li a img
+{   
+    max-width : 20px;
+    filter:invert(1);
+    mix-blend-mode: difference;
+}
+
+  
+
+@media (max-width:767px)
+{
+    section.curhead 
+    {
+        padding:20px 50px;
+        clip-path: circle(155vh at 50% -80vh);
+
+    }
+    .banner
+    {
+        /* padding:100px 50px 150px; */
+    }
+    .banner h2 
+    {
+        font-size: 1.8em;
+    }
+    .banner.content p,
+    .banner.content a
+    {
+        font-size:1em;
+    }
+    .banner.active
+    {
+        transform:translateX(-250px);
+    } 
+    #navigation
+    {
+        width:250px;
+    }
+    #navigation ul li a 
+    {
+        font-size: 1.5em;
+        margin:5px 0;
+
+    }
+    .content a
+    {
+      font-size: 0.8em;
+    }
+    .content p
+    {
+      font-size: 1.2em;
+    }
+    .sci
+    {
+        position:absolute;
+        bottom:50px;
+        right:initial;
+        flex-direction: row;
+    }
+
+    .sci li a 
+    {
+        margin:initial;
+        margin-right:10px ;
+        background: #40c3ff;
+    }
+}
+
+
+.footer .box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(247 245 236);
+    z-index: 100000;
+    padding: 8px;
+    margin-top: 50px;
+    
+    
+  }
+  h1
+  { font-size: 20px;
+    font-family: "Poppins";
+    color:#63bfe5;
+  }

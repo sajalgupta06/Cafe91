@@ -1,0 +1,182 @@
+body{
+  min-height: 100vh;
+}
+
+
+.section {
+    position: relative ;
+    height: 100vh ;
+    display: flex ;
+    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("https://img.freepik.com/free-vector/fast-food-black-background-poster_1284-14589.jpg?size=626&ext=jpg&ga=GA1.2.1627479250.1601810605");
+    background-size: cover;
+    justify-content: center ;
+    align-items: center ;
+    padding: 20px ;
+    z-index: 2;
+  }
+  
+  .section .container {
+    position: relative ;
+    width: 800px ;
+    height: 500px ;
+    background: white;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1) ;
+    overflow: hidden;
+    margin-top: 0px;
+    border-radius: 50px;
+  }
+  .section .container .user {
+    position: absolute;
+    top: 0;
+    Left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    
+   
+  }  
+  
+  .section .container .user .imgBx {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    background:#fff;
+    transition: 0.5s;
+  }
+  .section .container .user .imgBx img {
+    position: absolute;
+    top: 0;
+    Left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .section .container .user .formBx
+  {
+      position: relative;
+      width:50%;
+      height:100%;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      background:white;
+      transition:0.5s;
+      
+  }
+  
+  .section .container .user .formBx form h2 {
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .section .container .user .formBx form input {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    background:#f5f5f5;
+    border:none;
+    color:#333;
+    outline:none;
+    box-shadow: none;
+    margin:8px 0;
+    font-size:14px;
+    letter-spacing: 1px;
+    font-weight: 300;
+  }
+  .section .container .user .formBx form input[type="submit"]
+  {
+      max-width: 100px;
+      background:#677eff;
+      color:#fff;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      transition:0.5s;
+  }
+  
+  .section .container .user .formBx form .signup
+  {
+      position: relative;
+      margin-top:20px;
+      font-size:12px;
+      letter-spacing: 1px;
+      color:#555;
+      text-transform: uppercase;
+      font-weight: 300;
+  }
+  .section .container .user .formBx form .signup a
+  {
+      font-weight: 600;
+      text-decoration:none;
+      color:#677eff;
+  }
+  .section .container .signupBx
+  {
+    pointer-events: none;
+  }
+  .section .container.active .signupBx
+  {
+    pointer-events: initial;
+  }
+  
+  .section .container.active .signupBx .formBx
+  {
+    Left:0;
+  }
+  .section .container .signupBx .formBx
+  {
+    Left:100%;
+  }
+  .section .container .signupBx .imgBx
+  {
+    Left:-100%;
+  }
+  .section .container.active .signupBx .imgBx
+  {
+    Left:0;
+  }
+  
+  
+  
+  .section .container.active .signin .formBx
+  {
+    Left:100%;
+  }
+  .section .container .signin .formBx
+  {
+    Left:0;
+  }
+  .section .container .signin .imgBx
+  {
+    Left:0;
+  }
+  .section .container.active .signin .imgBx
+  {
+    Left:-100%;
+  }
+  @media (max-width:991px)
+  {                                   
+    .section .container
+    {
+      max-width:400px;
+    }
+    .section .container .imgBx
+    {
+      display:none;
+    }
+    .section .container .user .formBx
+    {
+      width:100%;
+      background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
+      background-size: cover;
+    }
+    
+  }
+

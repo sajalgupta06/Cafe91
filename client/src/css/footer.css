@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap");
+
+*{
+  
+}
+
+.footer .box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(247 245 236);
+  z-index: 100000;
+  padding: 8px;;
+  
+  
+}
+h1
+{ font-size: 20px;
+  font-family: "Poppins";
+  color:#63bfe5;
+}
