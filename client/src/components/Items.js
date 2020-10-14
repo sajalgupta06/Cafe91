@@ -69,9 +69,7 @@ useEffect(() => {
         <li >
           <Link to="/cart" >
             MyCart{" "}
-            <span>
-              <GrCart></GrCart>
-            </span>
+           
           </Link>
         </li>
         <li >

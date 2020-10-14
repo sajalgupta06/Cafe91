@@ -80,11 +80,6 @@ export default function Home() {
     } else {
       return [
         <li className="nav-item ">
-          <Link to="/" className="nav-link">
-            Home
-          </Link>
-        </li>,
-        <li className="nav-item ">
           <Link to="/admin" className="nav-link">
             Admin
           </Link>
@@ -114,27 +109,28 @@ export default function Home() {
               <div className="content">
                 <h2>
                   <br></br>
-                  <span>Cafe 91</span>
+                  <span>Cafe <span>91</span>
+                </span>
                 </h2>
                 <br></br>
                 <br></br>
                 <p>
-                  Its time to say yes to your favorite food at your doorsteps.
-                  Cafe 91 brings you a easiest way play with your food
+                  brings you the most delicious food at your doorsteps.<br></br>
+                  Signup to order.
                 </p>
                 
               </div>
             </div>
             <div className="toggle" onClick={() => toggling()}></div>
           </section>
-        </header>
-
-        <section className="footer">
-        <div className="box">
-        <h1>Designed by Sajal gupta</h1>
-        
-        </div>
-  </section>
+          </header>
+          
+          <section className="footer">
+          <div className="box">
+          <h1>Designed by Sajal gupta</h1>
+          
+          </div>
+          </section>
         
         
         

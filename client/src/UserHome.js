@@ -57,9 +57,6 @@ export default function UserHome() {
             <li>
               <Link to="/cart">
                 MyCart{" "}
-                <span>
-                  <GrCart></GrCart>
-                </span>
               </Link>
             </li>
             <li>
@@ -105,7 +102,7 @@ export default function UserHome() {
                       </div>
                       <div className="team-content">
                         <h3 className="name">{item.catName}</h3>
-                        <h4 className="title">I Love {item.catName}</h4>
+                        
                       </div>
                     </div>
                   </Link>

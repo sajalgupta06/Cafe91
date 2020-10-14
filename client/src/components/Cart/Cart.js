@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import { cafeContext, ProductConsumer } from "../../App";
-import Cartlist from "./Cartlist";
-import CartTotal from "./CartTotal";
+
 import { AiFillDelete } from "react-icons/ai";
 import "../../css/userhome.css";
 import { Link, useHistory } from "react-router-dom";
@@ -88,9 +87,7 @@ export default function Cart() {
               <li>
                 <Link to="/cart">
                   MyCart{" "}
-                  <span>
-                    <GrCart></GrCart>
-                  </span>
+                  
                 </Link>
               </li>
               <li>
@@ -178,7 +175,7 @@ export default function Cart() {
                                     {item.name}
                                   </h1>
                                 </div>
-
+                                
                                 <div className="col-6">
                                   <ul className="pagination justify-content-end set-quantity">
                                     <li className="page-item">
@@ -194,6 +191,7 @@ export default function Cart() {
                                         <i className="fas fa-minus"></i>{" "}
                                       </button>
                                     </li>
+                                    
                                     <li className="page-item">
                                       <input
                                         type="text"
@@ -412,7 +410,7 @@ export default function Cart() {
 
                   <div className="mt-3 shadow p-3 bg-white">
                     <div className="pt-4">
-                      <h5 className="mb-4">Expected delivery date</h5>
+                      <h5 className="mb-4">Expected delivery time</h5>
                       <p>Approx 30 Minutes</p>
                     </div>
                   </div>
