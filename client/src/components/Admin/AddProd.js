@@ -12,7 +12,7 @@ export default function Adminpanel() {
   const [catName, setcatName] = useState("Category")
   const addProd = () => {
     window.event.preventDefault()
-    fetch("http://localhost:5000/addproduct", {
+    fetch("/addproduct", {
       method: "post",
       headers: {
         "Content-Type": "application/json"
@@ -35,7 +35,7 @@ export default function Adminpanel() {
     })
 
   }
-    fetch("http://localhost:5000/searchcategory", {
+    fetch("/searchcategory", {
       method: "get",
       headers: {
         "Content-Type": "application/json"

@@ -15,7 +15,7 @@ export default function Admin(){
 
     const signIn=()=>{
         window.event.preventDefault()
-        fetch("http://localhost:5000/adminsignin",{
+        fetch("/adminsignin",{
           method:"post",
           headers:{
             "Content-Type":"application/json",

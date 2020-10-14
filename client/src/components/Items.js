@@ -32,7 +32,7 @@ const [toggle,setToggle] = useState('toggle')
   
 useEffect(() => {
   
-  fetch('http://localhost:5000/spawnitems', {
+  fetch('/spawnitems', {
   method: "post",
   headers: {
     "Content-Type": "application/json",

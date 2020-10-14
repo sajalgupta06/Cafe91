@@ -22,7 +22,7 @@ export default function UserHome() {
     }
   };
   const bringdata = () => {
-    fetch("http://localhost:5000/searchcategory", {
+    fetch("/searchcategory", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

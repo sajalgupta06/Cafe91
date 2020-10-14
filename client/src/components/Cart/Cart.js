@@ -25,7 +25,7 @@ export default function Cart() {
 
   const orderNow = () => {
     window.event.preventDefault();
-    fetch("http://localhost:5000/orderinfo", {
+    fetch("/orderinfo", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

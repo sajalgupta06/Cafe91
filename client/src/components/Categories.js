@@ -9,7 +9,7 @@ export default function Categories() {
   // console.log("its category")
   const { state, dispatch } = useContext(cafeContext);
   useEffect(() => {
-    fetch("http://localhost:5000/searchcategory", {
+    fetch("/searchcategory", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

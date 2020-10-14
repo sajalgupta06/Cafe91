@@ -25,7 +25,7 @@ export default function Signin() {
 
   const postData = () => {
     window.event.preventDefault();
-    fetch("http://localhost:5000/signup", {
+    fetch("/signup", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -55,7 +55,7 @@ export default function Signin() {
 
   const signIn = () => {
     window.event.preventDefault();
-    fetch("http://localhost:5000/signin", {
+    fetch("/signin", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

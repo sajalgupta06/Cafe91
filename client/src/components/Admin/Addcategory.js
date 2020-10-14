@@ -9,7 +9,7 @@ export default function Addcategory() {
 
   const send=()=>{
     window.event.preventDefault();
-    fetch("http://localhost:5000/addcategory",{
+    fetch("/addcategory",{
       method:"post",
       headers:{
         "Content-Type":"application/json"

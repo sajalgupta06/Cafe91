@@ -6,7 +6,7 @@ import M from "materialize-css";
 export default function Orders() {
   const { state, dispatch } = useContext(cafeContext);
 
-  fetch("http://localhost:5000/adminorder", {
+  fetch("/adminorder", {
     method: "get",
     headers: {
       "Content-Type": "application/json",
