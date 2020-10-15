@@ -435,7 +435,7 @@ CATEGORIES
 }
 
  .heading_content h3{
-    font-size:60px;
+    font-size:8rem;
     font-weight: 200;
     margin-bottom: 10px;    
 
@@ -444,7 +444,7 @@ CATEGORIES
 
  .heading_content p{
      position: relative;
-        font-size: 25px;
+        font-size: 3rem!important;
         font-weight: 300;
         margin-bottom: 20px;
         letter-spacing: 1px;
@@ -513,6 +513,12 @@ CATEGORIES
     }
 }
 
+@media(max-width:360px)
+{
+    .neon-wrapper .txt{
+        font-size:4rem ;
+    }
+}
 
 @media(max-width:556px){
     .heading_content p{
@@ -525,5 +531,7 @@ CATEGORIES
         font-size: 4rem!important;
     }
    
-    
+    .price_money h3{
+        font-size: 1rem!important;
+    }
 }   

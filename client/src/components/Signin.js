@@ -34,6 +34,7 @@ export default function Signin() {
         name: nameS,
         password: passwordS,
          phonenum: phoneS,
+         email:emailS
       }),
     })
       .then((res) => res.json())
@@ -41,11 +42,13 @@ export default function Signin() {
         if (data.error) {
           M.toast({ html: data.error,classes:"text-light bg-danger" });
         } else {
-          console.log(data);
-          localStorage.setItem("jwt",data.token)
-          M.toast({ html: "Signup Successfully ", classes:"text-light bg-success"})
+          
           // window.location.reload(false);
-          history.push("/home");
+          setclass(!oldclass)
+
+         
+          M.toast({ html: "Account created Successfully ", classes:"text-light bg-success"})
+          
          
         }
       }).catch(error=>{

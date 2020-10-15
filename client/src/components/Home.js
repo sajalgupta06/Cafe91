@@ -116,12 +116,12 @@ export default function Home() {
                 <br></br>
                 <p>
                   brings you the most delicious food at your doorsteps.<br></br>
-                  Signup to order.
+                  Signin to order.
                 </p>
                 
               </div>
             </div>
-            <div className="toggle" onClick={() => toggling()}></div>
+            <div className="toggle1" onClick={() => toggling()}></div>
           </section>
           </header>
           

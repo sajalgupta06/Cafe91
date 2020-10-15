@@ -26,12 +26,12 @@ export default function Admin(){
             password:passwordS
           })
         }).then(res=>res.json()).then(data=>{if(data.error){
-          M.toast({html:data.error})
+          M.toast({html:data.error,classes:"text-light bg-danger"})
           }
           else{
             localStorage.setItem("adminjwt",data.token)
             dispatch({type:"USER",payload:data.user})
-            M.toast({html:"success"})
+            M.toast({html:"success" ,classes:"text-light bg-success"})
             window.location.reload(false)
             history.push('/adminpanel')
     

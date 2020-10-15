@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { GrCart } from "react-icons/gr";
 import { cafeContext } from "./App";
 import "./css/userhome.css";
+import M from "materialize-css";
 import Items from "./components/Items";
 
 export default function UserHome() {

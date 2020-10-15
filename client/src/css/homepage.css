@@ -9,7 +9,15 @@
     font-family: 'Poppins';
 }
 
+header{
 
+    /* position: absolute; */
+    top:0;
+    left:0;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+}
 section.curhead
 {
     position : relative;
@@ -18,7 +26,7 @@ section.curhead
     width:100%;
     height:100vh;
     display:flex;
-    justify-content:space-between;
+    /* justify-content:space-between; */
     padding:40px 100px;
     overflow: hidden;
     clip-path: circle(180vh at 50% -80vh);
@@ -51,7 +59,7 @@ section.curhead .stuff
  section.curhead .stuff span span{
      color:red;
  }
-header section.curhead .toggle 
+header section.curhead .toggle1 
 {
     position: relative;
     width:30px;
@@ -59,7 +67,16 @@ header section.curhead .toggle
     cursor:pointer;
     
 }
-header section.curhead .toggle::before
+@media(max-width:556px){
+    header section.curhead .toggle1 
+    {
+        width: 4rem;
+        right:-22px;
+
+    }
+}
+
+header section.curhead .toggle1:before
 {
     content:'';
     position: absolute;
@@ -68,22 +85,22 @@ header section.curhead .toggle::before
     height:2px;
     background:#fff;
 }
-header section.curhead .toggle::after
+header section.curhead .toggle1:after
 {
     content:'';
     position: absolute;
-    top:7px;
+    bottom:7px;
     width:100%;
     height:2px;
     background:#fff;
-    visibility: hidden;
+    
 }
-.banner.active header section.curhead .toggle::before{
+.banner.active header section.curhead .toggle1::before{
     top:50%;
     left:50%;
     transform: translate(-50%,-50%) rotate(45deg);
 }
-.banner.active header section.curhead .toggle::after{
+.banner.active header section.curhead .toggle1::after{
     visibility: visible;
     top:50%;
     left:50%;

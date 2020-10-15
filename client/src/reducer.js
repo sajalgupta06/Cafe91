@@ -129,7 +129,6 @@ const addTotals = (state) => {
   return { ...state };
 };
 const removeItem = (id, state) => {
-  console.log(state.cart)
   let cartitems =localStorage.getItem("cart")
   cartitems=JSON.parse(cartitems)
 
@@ -227,6 +226,7 @@ const clear = (state) => {
   state.category = [];
   state.addcatname = [];
   state.orderInfo = [];
+  M.toast({html:"Successfully Logged out",classes:"text-light bg-success"})
   return { ...state };
 };
 const addcatname = (state, action) => {
