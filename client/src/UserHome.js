@@ -88,7 +88,7 @@ export default function UserHome() {
         <div class="heading_content">
           <div class="text">
             <h3>Menu</h3>
-            <p>Taste Your Favorite Food</p>
+            <p>Enjoy Your Favorite Food</p>
           </div>
         </div>
         <div className="container">

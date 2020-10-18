@@ -39,6 +39,11 @@ h2 {
   text-transform: capitalize;
   font-weight: 500;
 }
+.col-6
+{
+  flex:0 0 60%!important;
+  max-width: 80%;
+}
 .card-title p {
   font-size: 0.9rem;
   font-weight: 500;
@@ -67,7 +72,7 @@ h2 {
 }
 .page-link {
   line-height: 16px;
-  width: 2rem;
+  width: 4rem;
   font-size: 1rem;
   display: flex;
   justify-content: center;
@@ -136,3 +141,23 @@ h2 {
     
 }
 
+@media(max-width:400px)
+{
+  .product_img img{
+    min-width: 147px;
+    max-width: 154px;
+  }
+  .page-link {
+
+    width:2rem
+  } 
+}
+
+@media(max-width:280px)
+{
+
+  .page-link {
+
+    width:1rem;
+  } 
+}

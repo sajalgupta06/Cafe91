@@ -60,12 +60,8 @@ useEffect(()=>{
     const jwt = localStorage.getItem("jwt")
     const cart = localStorage.getItem("cart")
 
-  if(!jwt||!UsER_INF||!cart)
-  { 
-    localStorage.clear()
-    history.push('/')
-  }
-  else if(admin) {
+  
+  if(admin) {
     history.push('/admindash')
    
   }

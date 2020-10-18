@@ -258,7 +258,7 @@ export default function Cart() {
                       </p>
                     </div>
                     <div className="price_indiv d-flex justify-content-between">
-                      <p>Shipping Charge</p>
+                      <p>Delivery Charge</p>
                       <p>
                         Rs.<span id="shipping_charge">{state.cartTax}</span>
                       </p>
