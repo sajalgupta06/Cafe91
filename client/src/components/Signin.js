@@ -43,12 +43,14 @@ export default function Signin() {
           M.toast({ html: data.error,classes:"text-light bg-danger" });
         } else {
           
-          // window.location.reload(false);
           setclass(!oldclass)
 
          
           M.toast({ html: "Account created Successfully ", classes:"text-light bg-success"})
-          
+          setNameS("")
+          setPasswordS("")
+          setPhoneS("")
+          setEmailS("")
          
         }
       }).catch(error=>{

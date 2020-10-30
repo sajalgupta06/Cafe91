@@ -7,11 +7,12 @@ import { useLocation, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { GrCart } from "react-icons/gr";
+import Loader from 'react-loader-spinner'
 
 
 
 const Items = ({match}) => { 
-
+const [loading ,setLoading] =useState("true")
 const {state,dispatch} = useContext(cafeContext)
 const [toggle,setToggle] = useState('toggle')
   const [overlay,setOverlay] = useState('overlay')
@@ -48,6 +49,7 @@ useEffect(() => {
       console.log(data.error);
     } else {
       dispatch({ type: "SET_PRODUCT", payload: data });
+      setLoading(false)
     
     }
   })
@@ -94,8 +96,9 @@ useEffect(() => {
     {  
       state.products.map((product) => { 
   
-    return <ItemsList key={product._id} product={product}></ItemsList>;
-        
+    return (
+    loading?<Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />:<ItemsList key={product._id} product={product}></ItemsList>
+    )
       })
     }
     </div>

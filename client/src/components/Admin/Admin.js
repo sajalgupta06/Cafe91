@@ -30,7 +30,7 @@ export default function Admin(){
           }
           else{
             localStorage.setItem("adminjwt",data.token)
-            dispatch({type:"USER",payload:data.user})
+            // dispatch({type:"USER",payload:data.user})
             M.toast({html:"success" ,classes:"text-light bg-success"})
             window.location.reload(false)
             history.push('/adminpanel')

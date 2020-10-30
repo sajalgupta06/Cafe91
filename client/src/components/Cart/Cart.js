@@ -44,7 +44,7 @@ export default function Cart() {
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
-          M.toast({ html: data.error });
+          M.toast({ html: data.error ,classes:"text-light bg-danger"});
           console.log(data.error)
         } else {
           M.toast({ html: data.mssg ,classes:"text-light bg-success"});
