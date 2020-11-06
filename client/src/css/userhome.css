@@ -5,7 +5,7 @@ body{
     background-color: #fff;
     min-height: 300vh;
 }
-.toggle
+/* .toggle
 {
     position:fixed;
     top:20px;
@@ -115,7 +115,7 @@ body{
 
 .menu ul li a:hover:before{
     transform: scale(1);
-}
+} */
 
 /* ############################################
 SLIDER
@@ -529,8 +529,8 @@ CATEGORIES
     }
      h3{
         font-size: 4rem!important;
-    }
-   
+    } 
+    
     .price_money h3{
         font-size: 1rem!important;
     }

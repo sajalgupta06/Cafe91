@@ -7,7 +7,9 @@ import { cafeContext } from "../App";
 import Footer from "./Footer"
 import facebook from "./img/facebook.png";
 import twitter from "./img/twitter.png";
-import linkedin from "./img/linkedin.png";
+import linkedin from "./img/linkedin.png"; 
+// import Cookies from 'js-cookie'
+import Navbar from "./Navbar";
 
 export default function Home() {
   const { state, dispatch } = useContext(cafeContext);
@@ -31,7 +33,10 @@ export default function Home() {
   };
 
   const renderlist = () => {
+
     const user = localStorage.getItem("jwt");
+    // const user = Cookies.get('jwt');
+
     const admin = localStorage.getItem("adminjwt");
 
     if (user) {
@@ -98,49 +103,8 @@ export default function Home() {
   // <div id="toggle" onClick={() => toggling()}></div>
   return (
     <React.Fragment>
-      <section className={bannertoggle} id="sec">
-        <header>
-          <section className="curhead">
-            <div className="stuff">
-              <h1>
-                Hola!!<br></br>
-                Foodies
-              </h1>
-              <div className="content">
-                <h2>
-                  <br></br>
-                  <span>Cafe <span>91</span>
-                </span>
-                </h2>
-                <br></br>
-                <br></br>
-                <p>
-                  brings you the most delicious food at your doorsteps.<br></br>
-                  Signin to order.
-                </p>
-                
-              </div>
-            </div>
-            <div className="toggle1" onClick={() => toggling()}></div>
-          </section>
-          </header>
-          
-          <section className="footer">
-          <div className="box">
-          <h1>Designed by Sajal gupta</h1>
-          
-          </div>
-          </section>
-        
-        
-        
-       
-      </section>
-
-      <div id="navigation" className={navtoggle}>
-        <ul>{renderlist()}</ul>
-      </div>
-      <section></section>
+      
+     
  
     </React.Fragment>
   );

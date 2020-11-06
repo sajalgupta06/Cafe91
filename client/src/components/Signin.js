@@ -4,6 +4,8 @@ import M from "materialize-css";
 import "../css/sign.css"
 import {GrCart} from 'react-icons/gr'
 import { cafeContext } from '../App';
+import Cookies from 'js-cookie'
+import Navbar from './Navbar';
 
 export default function Signin() {
     const { state, dispatch } = useContext(cafeContext);
@@ -76,6 +78,7 @@ export default function Signin() {
           M.toast({ html: data.error ,classes:"text-light bg-danger"})
         } else {
           localStorage.setItem("jwt", data.token);
+          Cookies.set('jwt', data.token)
 
           M.toast({ html: "Success" ,classes:"text-light bg-success"});
           // window.location.reload(false);
@@ -84,10 +87,15 @@ export default function Signin() {
             const info = JSON.stringify(data.user)
             localStorage.setItem("UsER_INF",info)
             localStorage.setItem("cart",'[]')
+            Cookies.set('cart', '[]')
+            // Cookies.set('UsER_INF', in)
             
           }, 1000);
           
         }
+      }).catch(error=>{
+        M.toast({ html: "No Internet Connection" ,classes:"text-light bg-danger"})
+
       });
     };
  
@@ -158,6 +166,7 @@ export default function Signin() {
       }
     return (
         <div>
+        <Navbar></Navbar>
         <section className="section ">
         <div className={`container ${oldclass ? " " : "active"}`}>
           <div className="user singinBx">

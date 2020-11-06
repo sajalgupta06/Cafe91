@@ -8,11 +8,13 @@ import { Link, useHistory } from "react-router-dom";
 import { GrCart } from "react-icons/gr";
 import "../../css/cart.css";
 import M from "materialize-css";
+import Navbar from "../Navbar";
 
 export default function Cart() {
   const { state, dispatch } = useContext(cafeContext);
   const history = useHistory();
   let cartitems = localStorage.getItem("cart");
+
   cartitems = JSON.parse(cartitems);
 
   const [toggle, setToggle] = useState("toggle");
@@ -21,6 +23,7 @@ export default function Cart() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const jwt = localStorage.getItem("jwt")
 
   const orderNow = () => {
     window.event.preventDefault();
@@ -72,40 +75,12 @@ export default function Cart() {
     }
   };
 
-
+if(jwt)
+{
   if (cartitems.length==0) {
     return (
       <React.Fragment>
-        <div>
-          <div className={overlay} onClick={() => settoggling()}></div>
-          <div className={menu} onClick={() => settoggling()}>
-            <ul>
-              <li>
-                <Link to="/home">Home</Link>
-              </li>
-              
-              <li>
-                <Link to="/cart">
-                  MyCart{" "}
-                  
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/"
-                  onClick={() => {
-                    localStorage.clear();
-                    dispatch({ type: "CLEAR" });
-                  }}
-                >
-                  Logout
-                </Link>
-              </li>
-              
-            </ul>
-          </div>
-          <div className={toggle} onClick={() => settoggling()}></div>
-        </div>
+        <Navbar></Navbar>
         <div
         className="about">
         <div class="heading_content">
@@ -119,35 +94,7 @@ export default function Cart() {
   } else {
     return (
       <div>
-        <div>
-          <div className={overlay} onClick={() => settoggling()}></div>
-          <div className={menu} onClick={() => settoggling()}>
-            <ul>
-              <li>
-                <Link to="/home">Home</Link>
-              </li>
-
-              <li>
-                <Link to="/cart">
-                  MyCart{" "}
-                
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/"
-                  onClick={() => {
-                    localStorage.clear();
-                    dispatch({ type: "CLEAR" });
-                  }}
-                >
-                  Logout
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className={toggle} onClick={() => settoggling()}></div>
-        </div>
+      <Navbar></Navbar>
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-10 col-11 mx-auto">
@@ -422,61 +369,19 @@ export default function Cart() {
   }
 }
 
-// <div className="row my-1 text-capitalize text-center">
-//     {cartitems.map(item=>{
-//       return(
-//         <React.Fragment>
-//         <div className="col-10 mx-auto col-lg-2">
-//         <img
-//           src={item.img}
-//           style={{ width: "5rem", heigth: "5rem" }}
-//           className="img-fluid"
-//           alt=""
-//         />
-//       </div>
-//       <div className="col-10 mx-auto col-lg-2 ">
-//         <span className="d-lg-none">product :</span> {item.name}
-//       </div>
-//       <div className="col-10 mx-auto col-lg-2 ">
-//         <strong>
-//           <span className="d-lg-none">price :</span> Rs.{item.price}
-//         </strong>
-//       </div>
-//       <div className="col-10 mx-auto col-lg-2 my-2 my-lg-0 ">
-//         <div className="d-flex justify-content-center">
-//           <div>
-//             <span
-//               className="btn btn-black mx-1"
-//               onClick={() => {
-//                   return dispatch({type:"DECREMENT",payload:item._id});
-//                 }}
-//             >
-//               -
-//             </span>
-//             <span className="btn btn-black mx-1">{item.count}</span>
-//             <span
-//               className="btn btn-black mx-1"
-//               onClick={() => {
-//                   return dispatch({type:"INCREMENT",payload:item._id})
-//                   ;
-//                 }}
-//             >
-//               +
-//             </span>
-//           </div>
-//         </div>
-//         </div>
-
-//       <div className="col-10 mx-auto col-lg-2 ">
-//         <div className=" cart-icon" onClick={() =>  dispatch({type:"REMOVE_ITEM",payload:item._id})}>
-//         <AiFillDelete></AiFillDelete>
-//         </div>
-//       </div>
-
-//       <div className="col-10 mx-auto col-lg-2 ">
-//         <strong>item total : Rs.{item.total} </strong>
-//       </div>
-//       </React.Fragment>
-//       )
-//     })}
-//     </div>
+else{
+  return (
+    <React.Fragment>
+      <Navbar></Navbar>
+      <div
+      className="about">
+      <div class="heading_content">
+      <div class="text">
+      <p>Sign in to add to cart</p>
+      </div>
+      </div>
+    </div>
+    </React.Fragment>
+  )
+}
+}

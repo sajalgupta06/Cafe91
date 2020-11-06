@@ -17,7 +17,10 @@ import Addcategory from './components/Admin/Addcategory'
 import Signin from './components/Signin'
 import Localstorage from './Localstore';
 import Localstore from './Localstore'
+import Profile from './components/Profile';
+// import Cookies from 'js-cookie'
 export const cafeContext = createContext();
+
 
 
 const  Routing=()=>{
@@ -57,23 +60,25 @@ const  Routing=()=>{
 useEffect(()=>{ 
     const admin = localStorage.getItem("adminjwt") 
     const UsER_INF=localStorage.getItem("UsER_INF")
-    const jwt = localStorage.getItem("jwt")
+    // const jwt = localStorage.getItem("jwt")
+    // const jwt=Cookies.get('jwt')
     const cart = localStorage.getItem("cart")
 
   
-  if(admin) {
-    history.push('/admindash')
+  // if(admin) {
+  //   history.push('/admindash')
    
-  }
-  else if(!cart){
-    localStorage.clear()
-    history.push('/') 
-  }
+  // }
+  // else if(!cart){
+  //   localStorage.clear()
+  //   history.push('/') 
+  // }
 },[])
 
   return (
     <Switch>
-    <Route exact path='/' component={Home}></Route>
+  
+    <Route exact path='/' component={UserHome}></Route>
     <Route exact path='/home' component={UserHome}></Route>
     <Route exact path='/cart' component={Cart}></Route>
     <Route exact path='/admin' component={Admin}></Route>
@@ -83,6 +88,7 @@ useEffect(()=>{
     <Route exact path='/addcategory' component={Addcategory}></Route>
     <Route exact path='/signin' component={Signin}></Route>
     <Route exact path='/Orders' component={Orders}></Route>
+    <Route exact path='/profile' component={Profile}></Route>
     <Route  path='/items' component={Items}></Route>
     </Switch>
   )
@@ -100,13 +106,17 @@ const App=()=> {
     category:[],
     addcatname:[],
     userInfo:[],
-    allOrders:[]
+    allOrders:[],
+    userorder:[],
+    
 };
   const [state,dispatch] = useReducer(shopreducer,istate)
   return (
     <cafeContext.Provider value={{state,dispatch}}>
     <BrowserRouter>
+    
     <Routing></Routing>
+    <Footer></Footer>
     
     </BrowserRouter>
     </cafeContext.Provider>

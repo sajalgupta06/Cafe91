@@ -5,6 +5,7 @@ import { cafeContext } from "./App";
 import "./css/userhome.css";
 import M from "materialize-css";
 import Items from "./components/Items";
+import Navbar from "./components/Navbar";
 
 export default function UserHome() {
   const { state, dispatch } = useContext(cafeContext);
@@ -47,46 +48,11 @@ export default function UserHome() {
   }
   return (
     <React.Fragment>
-      <div>
-        <div className={overlay} onClick={() => settoggling()}></div>
-        <div className={menu} onClick={() => settoggling()}>
-          <ul>
-            <li>
-              <Link to="/home">Home</Link>
-            </li>
-            
-            <li>
-              <Link to="/cart">
-                MyCart{" "}
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/"
-                onClick={() => {
-                  localStorage.clear();
-                  dispatch({ type: "CLEAR" });
-                }}
-              >
-                Logout
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div className="container1">
-        <div className="wrapper">
-          <div className="neon-wrapper">
-            <span className="txt">Cafe 91</span>
-            <span className="gradient"></span>
-            <span className="dodge"></span>
-          </div>
-        </div>
-      </div>
-
+    <Navbar></Navbar>
+    
       <section className="categories">
-        <div class="heading_content">
-          <div class="text">
+        <div className="heading_content">
+          <div className="text">
             <h3>Menu</h3>
             <p>Enjoy Your Favorite Food</p>
           </div>

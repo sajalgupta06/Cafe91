@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { GrCart } from "react-icons/gr";
 import Loader from 'react-loader-spinner'
+import Navbar from "./Navbar";
 
 
 
@@ -59,38 +60,7 @@ useEffect(() => {
 
   return (
     <React.Fragment>
-        <div>
-    <div className={overlay} onClick={()=>settoggling()}></div>
-    <div className={menu} onClick={()=>settoggling()}>
-    <ul>
-    <li >
-          <Link to="/home">
-            Home
-          </Link>
-        </li>
-        <li >
-          <Link to="/cart" >
-            MyCart{" "}
-           
-          </Link>
-        </li>
-        <li >
-          <Link
-            to="/"
-            onClick={() => {
-              localStorage.clear();
-              dispatch({ type: "CLEAR" });
-            }}
-          >
-            Logout
-          </Link>
-        </li>
-      
-        </ul>
-    </div>
-    <div className={toggle} onClick={()=>settoggling()}></div>
-    </div>
-    
+    <Navbar></Navbar>
     <div className="container3">
     
     {  

@@ -7,7 +7,7 @@ body{
     position: relative ;
     height: 100vh ;
     display: flex ;
-    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("https://img.freepik.com/free-vector/fast-food-black-background-poster_1284-14589.jpg?size=626&ext=jpg&ga=GA1.2.1627479250.1601810605");
+    background: linear-gradient(#eecda3  , #ef629f );
     background-size: cover;
     justify-content: center ;
     align-items: center ;

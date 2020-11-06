@@ -1,5 +1,7 @@
 import M from "materialize-css";
 import { useHistory } from "react-router-dom";
+// import Cookies from 'js-cookie'
+
 const setProducts = (action, state) => {
   state.products = action.payload;
   // console.log(action.payload)
@@ -8,9 +10,11 @@ const setProducts = (action, state) => {
 
 const lstorage=(state)=>{
   const savedata = JSON.stringify(state.cart)
-  let cart = localStorage.getItem("cart")
+  let cart = localStorage.getItem('cart') 
   cart=JSON.stringify(cart)
-  localStorage.setItem("cart",savedata)
+  localStorage.setItem('cart', savedata)
+  
+
   // console.log(localStorage.get(cart))
   return {...state}
 
@@ -23,8 +27,14 @@ const getItem = (id, state) => {
   return product;
 };
 const addToCart = (id, state) => {  
-  let cart = localStorage.getItem("cart")
+  let cart = localStorage.getItem('cart') 
+  let jwt = localStorage.getItem('jwt') 
+  
+  
   cart=JSON.parse(cart)
+  if(jwt)
+  {
+
   if(cart==null)
   {    
     let tempProducts = [state.products];
@@ -68,6 +78,11 @@ const addToCart = (id, state) => {
     
  
   }
+}
+else{
+  window.location.replace('/signin')
+  return{...state};
+}
 
 };
 const increment = (id, state) => {
@@ -226,6 +241,9 @@ const clear = (state) => {
   state.category = [];
   state.addcatname = [];
   state.orderInfo = [];
+  // Cookies.remove('jwt')
+  localStorage.clear()
+
   M.toast({html:"Successfully Logged out",classes:"text-light bg-success"})
   return { ...state };
 };
@@ -238,6 +256,11 @@ const allorders=(state,action)=>{
 state.allOrders = action.payload
 return {...state}
 
+}
+
+const userorder=(state,action)=>{
+  state.userorder = action.payload
+  return{...state}
 }
 
 export const shopreducer = (state, action) => {
@@ -283,5 +306,7 @@ export const shopreducer = (state, action) => {
       return allorders(state, action);
     case "ADD_CATNAME":
       return addcatname(state, action);
+      case "USER_ORDER":
+        return userorder(state, action);
   }
 };

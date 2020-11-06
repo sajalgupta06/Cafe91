@@ -181,6 +181,10 @@ router.post('/orderinfo',(req,res)=>{
     })
 })
 
+
+
+
+
 router.get('/adminorder',(req,res)=>{
 
     OrderInfo.find().populate().exec().then(order=>{
@@ -189,6 +193,23 @@ router.get('/adminorder',(req,res)=>{
         res.send(error)
     })
 })
+
+
+router.post('/userorder',(req,res)=>{
+
+    const {userId} = req.body
+
+    OrderInfo.find( {userId}).populate().exec().then(order=>{
+        res.send(order)
+    }).catch(error=>{
+        res.send(error)
+    })
+})
+
+
+
+
+
 
 router.post('/spawnitems',(req,res)=>{
     const {catName}= req.body

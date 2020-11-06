@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom'
 import '../App.css'
 import {GrCart} from 'react-icons/gr'
 import {cafeContext} from '../App'
+import '../css/navbar.css'
+import { AiOutlineUser, CgProfile } from "react-icons/ai"
 
 export default function Navbar() {
   
@@ -19,16 +21,19 @@ export default function Navbar() {
         <li className="nav-item  ">
         <Link to='/home' className="nav-link" >Home</Link>
         </li>,
-        <li className="nav-item  ">
-        <Link to='/categories' className="nav-link" >Categories</Link>
-        </li>,
+        
         <li className="nav-item ">
         <Link to='/cart' className="nav-link" >MyCart  <span><GrCart></GrCart></span></Link>
+        </li>,
+        <li className="nav-item ">
+        <Link to='/profile' className="nav-link" >Profile  <span><AiOutlineUser></AiOutlineUser></span></Link>
         </li>,
         <li className="nav-item ">
         <Link to='/' className="nav-link logout"  onClick={()=>{localStorage.clear() 
           dispatch({type:"CLEAR"})}}>Logout</Link>
         </li>,
+      
+
       ]
       }
       else if(admin){
@@ -44,24 +49,29 @@ export default function Navbar() {
           <li className="nav-item ">
           <Link to='/' className="nav-link" >Home</Link>
           </li>,
-        <li className="nav-item ">
-        <Link to='/admin' className="nav-link" >Admin</Link>
-        </li>,
+          
+          <li className="nav-item ">
+          <Link to='/signin' className="nav-link" >Sign in</Link>
+          </li>,
+        
         ]
       }
   }
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-transparent">
-  <div className="navbar-brand " >Cafe 91</div>
-  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-    <span className="navbar-toggler-icon"></span>
-  </button>
-
-  <div className="collapse navbar-collapse "   id="navbarTogglerDemo02">
-    <ul className="navbar-nav ml-auto mt-2 mt-lg-0" >
-      {renderlist()}
-      </ul>
-      </div>
+    <div>
+    <nav>
+    <div className="logo">
+Cafe 91</div>
+<input type="checkbox" id="click"></input>
+    <label for="click" className="menu-btn">
+      <i className="fas fa-bars"></i>
+    </label>
+    
+<ul>
+{renderlist()}
+</ul>
 </nav>
+ 
+</div>
   );
 }

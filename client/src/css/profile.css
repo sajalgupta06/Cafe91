@@ -1,0 +1,20 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.userorder{
+    min-height: 70vh;
+    margin-top: 1.5rem;
+   
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+.card{
+    /* height:200px; */
+    display: flex;
+    margin:10px
+}
