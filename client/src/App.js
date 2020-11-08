@@ -19,6 +19,8 @@ import Localstorage from './Localstore';
 import Localstore from './Localstore'
 import Profile from './components/Profile';
 // import Cookies from 'js-cookie'
+import Reset from './components/Reset'
+import NewPassword from './components/NewPassword';
 export const cafeContext = createContext();
 
 
@@ -89,6 +91,9 @@ useEffect(()=>{
     <Route exact path='/signin' component={Signin}></Route>
     <Route exact path='/Orders' component={Orders}></Route>
     <Route exact path='/profile' component={Profile}></Route>
+    <Route exact path='/reset' component={Reset}></Route>
+    <Route exact path='/reset/:token' component={NewPassword}></Route>
+    
     <Route  path='/items' component={Items}></Route>
     </Switch>
   )

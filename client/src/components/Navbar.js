@@ -23,7 +23,7 @@ export default function Navbar() {
         </li>,
         
         <li className="nav-item ">
-        <Link to='/cart' className="nav-link" >MyCart  <span><GrCart></GrCart></span></Link>
+        <Link to='/cart' className="nav-link" >MyCart  <span><GrCart color="white"></GrCart></span></Link>
         </li>,
         <li className="nav-item ">
         <Link to='/profile' className="nav-link" >Profile  <span><AiOutlineUser></AiOutlineUser></span></Link>

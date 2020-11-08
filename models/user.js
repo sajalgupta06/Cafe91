@@ -14,6 +14,8 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    resetToken:String,
+    expireToken:Date,
     phonenum:{
         type:Number,
         required:true

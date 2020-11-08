@@ -2,6 +2,8 @@ const jwt = require('jsonwebtoken')
 const { secret_key } = require('../config/keys')
 const User = require('../models/user')
 
+
+
 const auth = (req, res, next) => {
     const { authorization } = req.headers
     if (!authorization) {

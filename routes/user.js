@@ -11,6 +11,20 @@ const Prod = require("../models/product");
 const ProfleCat = require("../models/profilecat");
 const ProfileCat = require("../models/profilecat");
 const OrderInfo = require("../models/orderinfo");
+const nodemailer = require("nodemailer")
+const sendgridTransport = require('nodemailer-sendgrid-transport')
+const crypto = require("crypto")
+
+
+const transporter = nodemailer.createTransport(sendgridTransport({
+    auth:{
+        api_key:"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"
+    }
+}))
+
+
+
+
 
 router.post('/signup', (req, res) => {
     const { name, email, password, phonenum } = req.body;
@@ -36,6 +50,15 @@ router.post('/signup', (req, res) => {
                 user
                     .save()
                     .then((user) => {
+                     
+                        transporter.sendMail({
+                            to:user.email,
+                            from:"gscafe91@gmail.com",
+                            subject:"Signup Successfully",
+                            html:"<h1>welcome to cafe91</h1>"
+                        })
+
+
                         res.status(400).json("Signup Successfully");
                     })
                     .catch((error) => {
@@ -59,6 +82,7 @@ router.post('/signin',(req, res) => {
             if (!user) {
                 return res.json({ error: "Invalid Email and Password" })
             }
+         
             const token=jwt.sign({id:saveduser._id},secret_key)
             const {_id} = saveduser
             res.json({token,user:_id})
@@ -222,6 +246,57 @@ router.post('/spawnitems',(req,res)=>{
 
 })
 
+router.post("/reset-password",(req,res)=>{
+    crypto.randomBytes(32,(error,buffer)=>{
+        if(error)
+        {
+            return console.log(error)
+        }
+        const token = buffer.toString("hex")
+        User.findOne({email:req.body.email}).then(user=>{
+            if(!user)
+            {
+                return res.status(422).json({error:"User does not exists with that e-mail"})
+            }
+            user.resetToken = token
+            user.expireToken=Date.now()+3600000
+            user.save().then(result=>{
+                transporter.sendMail({
+                    to:user.email,
+                    from:"gscafe91@gmail.com",
+                    subject:"Password Reset",
+                    html:`<p>
+                    You requested for password reset</p>
+                    <h5>click in this <a href="http://localhost:3000/reset/${token}">link</a> to reset</h5>`
+                })
+                res.json({message:"check your Email"})
+            })
+        
+        })
+    })
+})
+
+
+router.post("/new-password",(req,res)=>{
+    const newpassword = req.body.password
+    const sentToken = req.body.token
+    User.findOne({resetToken:sentToken,expireToken:{$gt:Date.now()}}).then(user=>{
+        if(!user){
+            return res.status(422).json({error:"Try again session expired"})
+        }
+
+        bcrypt.hash(newpassword,12).then(hashedpassword=>{
+            user.password = hashedpassword
+            user.resetToken = undefined
+            user.expireToken=undefined
+            user.save().then((saveduser)=>{
+                res.json({message:"Password Updated Successfully"})
+            })
+        })
+    }).catch(error=>{
+        console.log(error)
+    })
+})
 
 
 module.exports = router

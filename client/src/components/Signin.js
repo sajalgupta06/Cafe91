@@ -195,12 +195,17 @@ export default function Signin() {
                   onClick={() => signIn()}
                 ></input>
                 <p className="signup">
+                
+                <Link to="/reset">Forgot Password</Link>
+              </p>
+                <p className="signup">
                   Dont't have an account ?{" "}
                   <a href="#" onClick={() => refresh(oldclass)}>
                     {" "}
                     Sign up
                   </a>{" "}
                 </p>
+               
               </form>
             </div>
           </div>
