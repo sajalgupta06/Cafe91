@@ -39,6 +39,9 @@ const orderinfoSchema = new mongoose.Schema({
     type:String,
     required:true
 },
+date:{type:String},
+
+total:{type:Number}
     
 });
 

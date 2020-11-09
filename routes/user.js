@@ -182,7 +182,7 @@ router.post('/searchcategory',(req,res)=>{
 
 router.post('/orderinfo',(req,res)=>{
 
-    const {products,userInfo} = req.body
+    const {products,userInfo,total} = req.body
 
 
     if(!userInfo.name||!userInfo.phone||!userInfo.address)
@@ -196,6 +196,9 @@ router.post('/orderinfo',(req,res)=>{
         userName:userInfo.name,
         contactNum:userInfo.phone,
         address:userInfo.address,
+        date:new Date(),
+        total:total
+        
 
     })
     orderinfo.save().then(savedorder=>{
@@ -294,6 +297,69 @@ router.post("/new-password",(req,res)=>{
                 res.json({message:"Password Updated Successfully"})
             })
         })
+    }).catch(error=>{
+        console.log(error)
+    })
+})
+
+router.post("/profile-new-password",(req,res)=>{
+    const newpassword = req.body.password
+    const id= req.body.id
+    User.findById(id).then(user=>{
+        if(!user){
+            return res.status(422).json({error:"Try again session expired"})
+        }
+        
+
+        bcrypt.hash(newpassword,12).then(hashedpassword=>{
+            user.password = hashedpassword
+            user.resetToken = undefined
+            user.expireToken=undefined
+            user.save().then((saveduser)=>{
+                res.json({message:"Password Updated Successfully"})
+            })
+        })
+    }).catch(error=>{
+        console.log(error)
+    })
+})
+
+
+router.post("/profile-new-phonenumber",(req,res)=>{
+    const newphonenumber = req.body.phonenumber
+    const id= req.body.id
+    User.findById(id).then(user=>{
+        if(!user){
+            return res.status(422).json({error:"Try again session expired"})
+        }
+        
+
+        
+            user.phonenum = newphonenumber
+            user.save().then((saveduser)=>{
+                res.json({message:"Phone Number  Updated Successfully"})
+            })
+        
+    }).catch(error=>{
+        console.log(error)
+    })
+})
+
+router.post("/profile-new-username",(req,res)=>{
+    const newUserName = req.body.userName
+    const id= req.body.id
+    User.findById(id).then(user=>{
+        if(!user){
+            return res.status(422).json({error:"Try again session expired"})
+        }
+        
+
+        
+            user.name = newUserName
+            user.save().then((saveduser)=>{
+                res.json({message:"User Name  Updated Successfully"})
+            })
+        
     }).catch(error=>{
         console.log(error)
     })

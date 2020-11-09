@@ -84,7 +84,7 @@ export default function Signin() {
           // window.location.reload(false);
           setTimeout(() => {
             history.push("/home");
-            const info = JSON.stringify(data.user)
+            const info = data.user.toString()
             localStorage.setItem("UsER_INF",info)
             localStorage.setItem("cart",'[]')
             Cookies.set('cart', '[]')

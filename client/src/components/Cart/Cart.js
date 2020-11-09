@@ -41,6 +41,7 @@ export default function Cart() {
             phone,
             address,
           },
+          total:state.cartTotal
         
       }),
     })

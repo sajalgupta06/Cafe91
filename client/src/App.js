@@ -121,7 +121,7 @@ const App=()=> {
     <BrowserRouter>
     
     <Routing></Routing>
-    <Footer></Footer>
+      <Footer></Footer>
     
     </BrowserRouter>
     </cafeContext.Provider>
