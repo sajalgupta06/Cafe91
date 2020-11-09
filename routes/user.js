@@ -6,7 +6,7 @@ const {User} = require("../models/user");
 const {Admin} = require("../models/user");
 const auth = require('../middleware/auth')
 const jwt = require('jsonwebtoken')
-const { secret_key } = require('../config/keys');
+const { secret_key, SENDGRID_API,EMAIL } = require('../config/keys');
 const Prod = require("../models/product");
 const ProfleCat = require("../models/profilecat");
 const ProfileCat = require("../models/profilecat");
@@ -16,9 +16,10 @@ const sendgridTransport = require('nodemailer-sendgrid-transport')
 const crypto = require("crypto")
 
 
+
 const transporter = nodemailer.createTransport(sendgridTransport({
     auth:{
-        api_key:"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"
+        api_key:SENDGRID_API
     }
 }))
 
@@ -267,7 +268,7 @@ router.post("/reset-password",(req,res)=>{
                     subject:"Password Reset",
                     html:`<p>
                     You requested for password reset</p>
-                    <h5>click in this <a href="http://localhost:3000/reset/${token}">link</a> to reset</h5>`
+                    <h5>click in this <a href="https://cafe91.herokuapp.com/reset/${token}">link</a> to reset</h5>`
                 })
                 res.json({message:"check your Email"})
             })
