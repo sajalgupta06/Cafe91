@@ -18,17 +18,17 @@ export default function Navbar() {
     {
       return [
 
-        <li className="nav-item  ">
+        <li key="1" className="nav-item  ">
         <Link to='/home' className="nav-link" >Home</Link>
         </li>,
         
-        <li className="nav-item ">
+        <li key="2" className="nav-item ">
         <Link to='/cart' className="nav-link" >MyCart  <span><GrCart color="white"></GrCart></span></Link>
         </li>,
-        <li className="nav-item ">
+        <li key="3" className="nav-item ">
         <Link to='/profile' className="nav-link" >Profile  <span><AiOutlineUser></AiOutlineUser></span></Link>
         </li>,
-        <li className="nav-item ">
+        <li key="4" className="nav-item ">
         <Link to='/' className="nav-link logout"  onClick={()=>{localStorage.clear() 
           dispatch({type:"CLEAR"})}}>Logout</Link>
         </li>,
@@ -38,7 +38,7 @@ export default function Navbar() {
       }
       else if(admin){
         return[
-          <li className="nav-item ">
+          <li key="5" className="nav-item ">
           <Link to='/' className="nav-link" onClick={()=>{localStorage.clear() 
             dispatch({type:"CLEAR"})}}>logout</Link>
           </li>,
@@ -46,11 +46,11 @@ export default function Navbar() {
       }
       else{
         return[
-          <li className="nav-item ">
+          <li key="6" className="nav-item ">
           <Link to='/' className="nav-link" >Home</Link>
           </li>,
           
-          <li className="nav-item ">
+          <li key="7" className="nav-item ">
           <Link to='/signin' className="nav-link" >Sign in</Link>
           </li>,
         
@@ -63,7 +63,7 @@ export default function Navbar() {
     <div className="logo">
 Cafe 91</div>
 <input type="checkbox" id="click"></input>
-    <label for="click" className="menu-btn">
+    <label htmlFor="click" className="menu-btn">
       <i className="fas fa-bars"></i>
     </label>
     

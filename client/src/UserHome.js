@@ -1,10 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { GrCart } from "react-icons/gr";
 import { cafeContext } from "./App";
 import "./css/userhome.css";
-import M from "materialize-css";
-import Items from "./components/Items";
 import Navbar from "./components/Navbar";
 
 export default function UserHome() {
@@ -12,6 +9,7 @@ export default function UserHome() {
   const [toggle, setToggle] = useState("toggle");
   const [overlay, setOverlay] = useState("overlay");
   const [menu, setMenu] = useState("menu");
+
   const settoggling = () => {
     if (toggle == "toggle") {
       setToggle("toggle active");
@@ -23,7 +21,8 @@ export default function UserHome() {
       setMenu("menu");
     }
   };
-  const bringdata = () => {
+
+  useEffect(() => {
     fetch("/searchcategory", {
       method: "post",
       headers: {
@@ -33,7 +32,6 @@ export default function UserHome() {
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
-          // M.toast({html:data.e})
           console.log(data.error);
         } else {
           dispatch({ type: "ADD_CATEGORY", payload: data });
@@ -42,14 +40,12 @@ export default function UserHome() {
       .catch((error) => {
         console.log(error);
       });
-  };
-  {
-    bringdata();
-  }
+  }, []);
+
   return (
     <React.Fragment>
-    <Navbar></Navbar>
-    
+      <Navbar></Navbar>
+
       <section className="categories">
         <div className="heading_content">
           <div className="text">
@@ -59,9 +55,12 @@ export default function UserHome() {
         </div>
         <div className="container">
           <div className="row">
-            {state.category.map((item) => {
+            {state.category.map((item,index) => {
               return (
-                <div className="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div
+                  key={index}
+                  className="col-12 col-sm-6 col-md-4 col-lg-3"
+                >
                   <Link to={`/items?name=${item.catName}`}>
                     <div className="our-team">
                       <div className="picture">
@@ -69,7 +68,6 @@ export default function UserHome() {
                       </div>
                       <div className="team-content">
                         <h3 className="name">{item.catName}</h3>
-                        
                       </div>
                     </div>
                   </Link>
@@ -79,9 +77,7 @@ export default function UserHome() {
           </div>
         </div>
       </section>
-      
-     
-      
+
       <div className={toggle} onClick={() => settoggling()}></div>
     </React.Fragment>
   );

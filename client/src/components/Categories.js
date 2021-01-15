@@ -5,6 +5,7 @@ import Items from "./Items";
 import { cafeContext, ProductConsumer } from "../App";
 import { Link } from "react-router-dom";
 
+
 export default function Categories() {
   // console.log("its category")
   const { state, dispatch } = useContext(cafeContext);
@@ -28,6 +29,7 @@ export default function Categories() {
         console.log(error)
       });
   }, [])
+  console.log(state.category)
     
     return (
       <div className="container">

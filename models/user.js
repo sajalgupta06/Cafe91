@@ -2,23 +2,26 @@
 const mongoose =  require('mongoose')
 
 const userSchema = new mongoose.Schema({
+    googleId:String,
+    
     name:{
         type:String,
-        required:true
+        // required:true
     },
     email:{
         type:String,
-        required:true
+        // required:true
     },
     password:{
         type:String,
-        required:true
+        // required:true
     },
     resetToken:String,
     expireToken:Date,
+    Date:Date,
     phonenum:{
         type:Number,
-        required:true
+        // required:true
     }
 
 })

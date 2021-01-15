@@ -21,6 +21,10 @@ import Profile from './components/Profile';
 // import Cookies from 'js-cookie'
 import Reset from './components/Reset'
 import NewPassword from './components/NewPassword';
+import Test from './components/Test';
+
+
+
 export const cafeContext = createContext();
 
 

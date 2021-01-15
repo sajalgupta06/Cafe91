@@ -1,29 +1,26 @@
-import React, { useContext, useState } from 'react'
-import {Link, useHistory} from 'react-router-dom'
+import React, { useContext, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import M from "materialize-css";
-import "../css/sign.css"
-import {GrCart} from 'react-icons/gr'
-import { cafeContext } from '../App';
-import Cookies from 'js-cookie'
-import Navbar from './Navbar';
+import "../css/sign.css";
+import { GrCart } from "react-icons/gr";
+import { cafeContext } from "../App";
+import Cookies from "js-cookie";
+import Navbar from "./Navbar";
 
 export default function Signin() {
-    const { state, dispatch } = useContext(cafeContext);
+  const { state, dispatch } = useContext(cafeContext);
   const history = useHistory();
-  const [navtoggle,setnavToggle] = useState("")
-  const [bannertoggle,setbannerToggle] = useState("banner")
+  const [navtoggle, setnavToggle] = useState("");
+  const [bannertoggle, setbannerToggle] = useState("banner");
   const [nameS, setNameS] = useState("");
   const [emailS, setEmailS] = useState("");
   const [passwordS, setPasswordS] = useState("");
   const [phoneS, setPhoneS] = useState("");
-    const jwt = localStorage.getItem("jwt")
+  const jwt = localStorage.getItem("jwt");
 
-  if(jwt) {
-    history.push('/home');
-    
-    };
-  
-
+  if (jwt) {
+    history.push("/home");
+  }
 
   const postData = () => {
     window.event.preventDefault();
@@ -35,27 +32,28 @@ export default function Signin() {
       body: JSON.stringify({
         name: nameS,
         password: passwordS,
-         phonenum: phoneS,
-         email:emailS
+        phonenum: phoneS,
+        email: emailS,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
-          M.toast({ html: data.error,classes:"text-light bg-danger" });
+          M.toast({ html: data.error, classes: "text-light bg-danger" });
         } else {
-          
-          setclass(!oldclass)
+          setclass(!oldclass);
 
-         
-          M.toast({ html: "Account created Successfully ", classes:"text-light bg-success"})
-          setNameS("")
-          setPasswordS("")
-          setPhoneS("")
-          setEmailS("")
-         
+          M.toast({
+            html: "Account created Successfully ",
+            classes: "text-light bg-success",
+          });
+          setNameS("");
+          setPasswordS("");
+          setPhoneS("");
+          setEmailS("");
         }
-      }).catch(error=>{
+      })
+      .catch((error) => {
         M.toast({ error });
       });
   };
@@ -75,99 +73,114 @@ export default function Signin() {
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
-          M.toast({ html: data.error ,classes:"text-light bg-danger"})
+          M.toast({ html: data.error, classes: "text-light bg-danger" });
         } else {
           localStorage.setItem("jwt", data.token);
-          Cookies.set('jwt', data.token)
+          Cookies.set("jwt", data.token);
 
-          M.toast({ html: "Success" ,classes:"text-light bg-success"});
+          M.toast({ html: "Success", classes: "text-light bg-success" });
           // window.location.reload(false);
           setTimeout(() => {
             history.push("/home");
-            const info = data.user.toString()
-            localStorage.setItem("UsER_INF",info)
-            localStorage.setItem("cart",'[]')
-            Cookies.set('cart', '[]')
+            const info = data.user.toString();
+            localStorage.setItem("UsER_INF", info);
+            localStorage.setItem("cart", "[]");
+            Cookies.set("cart", "[]");
             // Cookies.set('UsER_INF', in)
-            
           }, 1000);
-          
         }
-      }).catch(error=>{
-        M.toast({ html: "No Internet Connection" ,classes:"text-light bg-danger"})
-
+      })
+      .catch((error) => {
+        M.toast({
+          html: "No Internet Connection",
+          classes: "text-light bg-danger",
+        });
       });
-    };
- 
-      
-      const [oldclass, setclass] = useState(true);
-      function refresh(oldclass) {
-        window.event.preventDefault();
-        setclass(!oldclass);
-        
-      }
-      const toggling=()=>{
-        window.event.preventDefault()
-        if(navtoggle=="")
-        {
-          
-          setnavToggle("active")
-          setbannerToggle("banner active")
-        }
-        else
-        {
-          
-          setnavToggle("")
-          setbannerToggle("banner")
-        }
-      }
-      
-      const renderlist=()=>{
-        const user=localStorage.getItem('jwt')
-        const admin=localStorage.getItem('adminjwt')
-    
-        if(user)
-        {
-          return [
-    
-            <li className="nav-item  ">
-            <Link to='/home' className="nav-link" >Home</Link>
-            </li>,
-            <li className="nav-item  ">
-            <Link to='/categories' className="nav-link" >Categories</Link>
-            </li>,
-            <li className="nav-item ">
-            <Link to='/cart' className="nav-link" >MyCart  <span><GrCart></GrCart></span></Link>
-            </li>,
-            <li className="nav-item ">
-            <Link to='/' className="nav-link logout"  onClick={()=>{localStorage.clear() 
-              dispatch({type:"CLEAR"})}}>Logout</Link>
-            </li>,
-          ]
-          }
-          else if(admin){
-            return[
-              <li className="nav-item ">
-              <Link to='/' className="nav-link" onClick={()=>{localStorage.clear() 
-                dispatch({type:"CLEAR"})}}>logout</Link>
-              </li>,
-            ]
-          }
-          else{
-            return[
-              <li className="nav-item ">
-              <Link to='/' className="nav-link" >Home</Link>
-              </li>,
-            <li className="nav-item ">
-            <Link to='/admin' className="nav-link" >Admin</Link>
-            </li>,
-            ]
-          }
-      }
-    return (
-        <div>
-        <Navbar></Navbar>
-        <section className="section ">
+  };
+
+  const [oldclass, setclass] = useState(true);
+  function refresh(oldclass) {
+    window.event.preventDefault();
+    setclass(!oldclass);
+  }
+  const toggling = () => {
+    window.event.preventDefault();
+    if (navtoggle == "") {
+      setnavToggle("active");
+      setbannerToggle("banner active");
+    } else {
+      setnavToggle("");
+      setbannerToggle("banner");
+    }
+  };
+
+  const renderlist = () => {
+    const user = localStorage.getItem("jwt");
+    const admin = localStorage.getItem("adminjwt");
+
+    if (user) {
+      return [
+        <li className="nav-item  ">
+          <Link to="/home" className="nav-link">
+            Home
+          </Link>
+        </li>,
+
+        <li className="nav-item ">
+          <Link to="/cart" className="nav-link">
+            MyCart{" "}
+            <span>
+              <GrCart></GrCart>
+            </span>
+          </Link>
+        </li>,
+        <li className="nav-item ">
+          <Link
+            to="/"
+            className="nav-link logout"
+            onClick={() => {
+              localStorage.clear();
+              dispatch({ type: "CLEAR" });
+            }}
+          >
+            Logout
+          </Link>
+        </li>,
+      ];
+    } else if (admin) {
+      return [
+        <li className="nav-item ">
+          <Link
+            to="/"
+            className="nav-link"
+            onClick={() => {
+              localStorage.clear();
+              dispatch({ type: "CLEAR" });
+            }}
+          >
+            logout
+          </Link>
+        </li>,
+      ];
+    } else {
+      return [
+        <li className="nav-item ">
+          <Link to="/" className="nav-link">
+            Home
+          </Link>
+        </li>,
+        <li className="nav-item ">
+          <Link to="/admin" className="nav-link">
+            Admin
+          </Link>
+        </li>,
+      ];
+    }
+  };
+  return (
+    <div>
+      <Navbar></Navbar>
+      <section className="section ">
         <div className={`container ${oldclass ? " " : "active"}`}>
           <div className="user singinBx">
             <div className="imgBx">
@@ -194,10 +207,12 @@ export default function Signin() {
                   value="Login"
                   onClick={() => signIn()}
                 ></input>
+                <h2>Or</h2>
+                <a href="/auth/google">Sign Up with Google</a>
+
                 <p className="signup">
-                
-                <Link to="/reset">Forgot Password</Link>
-              </p>
+                  <Link to="/reset">Forgot Password</Link>
+                </p>
                 <p className="signup">
                   Dont't have an account ?{" "}
                   <a href="#" onClick={() => refresh(oldclass)}>
@@ -205,7 +220,6 @@ export default function Signin() {
                     Sign up
                   </a>{" "}
                 </p>
-               
               </form>
             </div>
           </div>
@@ -259,7 +273,7 @@ export default function Signin() {
             </div>
           </div>
         </div>
-      </section> 
-        </div>
-    )
+      </section>
+    </div>
+  );
 }
