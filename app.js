@@ -8,6 +8,7 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy
 const cookieSession = require("cookie-session")
 const Keys = require("./config/keys")
+const localStorage = require("localStorage")
 
 const {User} = require('./models/user')
 
@@ -42,14 +43,23 @@ app.get(
     })
   );
   
-  app.get("/auth/google/callback", passport.authenticate("google"));
+  app.get("/auth/google/callback", passport.authenticate("google"),(req,res)=>{
+      
+      res.redirect('http://localhost:3000/home')
+      
+      
+  });
 
   app.get('/current_user',(req,res)=>{
       res.send(req.user)
   })
+
   app.get('/logout',(req,res)=>{
+
     req.logOut()
     res.send(req.user)
+    res.redirect('http://localhost:3000/home')
+    
 })
 
 

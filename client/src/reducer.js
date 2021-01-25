@@ -8,59 +8,28 @@ const setProducts = (action, state) => {
   return { ...state };
 };
 
-const lstorage=(state)=>{
-  const savedata = JSON.stringify(state.cart)
-  let cart = localStorage.getItem('cart') 
-  cart=JSON.stringify(cart)
-  localStorage.setItem('cart', savedata)
-  
+const lstorage = (state) => {
+  const savedata = JSON.stringify(state.cart);
+  let cart = localStorage.getItem("cart");
+  cart = JSON.stringify(cart);
+  localStorage.setItem("cart", savedata);
 
   // console.log(localStorage.get(cart))
-  return {...state}
-
-}
+  return { ...state };
+};
 
 const getItem = (id, state) => {
- 
   const product = state.products.find((item) => item._id === id);
   // console.log(product)
   return product;
 };
-const addToCart = (id, state) => {  
-  let cart = localStorage.getItem('cart') 
-  let jwt = localStorage.getItem('jwt') 
-  
-  
-  cart=JSON.parse(cart)
-  if(jwt)
-  {
+const addToCart = (id, state) => {
+  let cart = localStorage.getItem("cart");
+  let jwt = localStorage.getItem("jwt");
 
-  if(cart==null)
-  {    
-    let tempProducts = [state.products];
-    const index = tempProducts[0].indexOf(getItem(id, state));
-    // console.log(index)
-    const product = tempProducts[0][index];
-    product.inCart = true;
-    product.count = 1;
-    const price = product.price;
-    product.total = price;
-    state.cart = [product, ...state.cart];
-    lstorage(state);
-    addTotals(state);
-    M.toast({html:"Added to Cart",classes:"text-light bg-success"})
-    return { ...state };
-  }
-  else{
-  const savedprod = cart.find(item=>(item._id==id))
-    if(savedprod)
-    {
-      M.toast({html:"Item Already Present in Cart ",classes:"text-light bg-success"})
-      return{...state}
-    }
-     else
-    
-    {
+  cart = JSON.parse(cart);
+  if (jwt) {
+    if (cart == null) {
       let tempProducts = [state.products];
       const index = tempProducts[0].indexOf(getItem(id, state));
       // console.log(index)
@@ -72,22 +41,40 @@ const addToCart = (id, state) => {
       state.cart = [product, ...state.cart];
       lstorage(state);
       addTotals(state);
-      M.toast({html:"Added to Cart" ,classes:"text-light bg-success"})
-        return{...state};
+      M.toast({ html: "Added to Cart", classes: "text-light bg-success" });
+      return { ...state };
+    } else {
+      const savedprod = cart.find((item) => item._id == id);
+      if (savedprod) {
+        M.toast({
+          html: "Item Already Present in Cart ",
+          classes: "text-light bg-success",
+        });
+        return { ...state };
+      } else {
+        let tempProducts = [state.products];
+        const index = tempProducts[0].indexOf(getItem(id, state));
+        // console.log(index)
+        const product = tempProducts[0][index];
+        product.inCart = true;
+        product.count = 1;
+        const price = product.price;
+        product.total = price;
+        state.cart = [product, ...state.cart];
+        lstorage(state);
+        addTotals(state);
+        M.toast({ html: "Added to Cart", classes: "text-light bg-success" });
+        return { ...state };
+      }
     }
-    
- 
+  } else {
+    window.location.replace("/signin");
+    return { ...state };
   }
-}
-else{
-  window.location.replace('/signin')
-  return{...state};
-}
-
 };
 const increment = (id, state) => {
-  let cartitems =localStorage.getItem("cart")
-  cartitems=JSON.parse(cartitems)
+  let cartitems = localStorage.getItem("cart");
+  cartitems = JSON.parse(cartitems);
   let tempCart = [...cartitems];
   const selectedProduct = tempCart.find((item) => {
     return item._id === id;
@@ -97,14 +84,14 @@ const increment = (id, state) => {
   product.count = product.count + 1;
   product.total = product.count * product.price;
   state.cart = tempCart;
-  lstorage(state)
+  lstorage(state);
   addTotals(state);
   // console.log(tempCart)
   return { ...state };
 };
 const decrement = (id, state) => {
-  let cartitems =localStorage.getItem("cart")
-  cartitems=JSON.parse(cartitems)
+  let cartitems = localStorage.getItem("cart");
+  cartitems = JSON.parse(cartitems);
   let tempCart = [...cartitems];
   const selectedProduct = tempCart.find((item) => {
     return item._id === id;
@@ -117,14 +104,14 @@ const decrement = (id, state) => {
   } else {
     product.total = product.count * product.price;
     state.cart = tempCart;
-    lstorage(state)
+    lstorage(state);
     addTotals(state);
     return { ...state };
   }
 };
 const getTotals = (state) => {
-  let cartitems =localStorage.getItem("cart")
-  cartitems=JSON.parse(cartitems)
+  let cartitems = localStorage.getItem("cart");
+  cartitems = JSON.parse(cartitems);
   let subTotal = 0;
   cartitems.map((item) => (subTotal += item.total));
   const tempTax = subTotal * 0.1;
@@ -144,14 +131,14 @@ const addTotals = (state) => {
   return { ...state };
 };
 const removeItem = (id, state) => {
-  let cartitems =localStorage.getItem("cart")
-  cartitems=JSON.parse(cartitems)
+  let cartitems = localStorage.getItem("cart");
+  cartitems = JSON.parse(cartitems);
 
   let tempProducts = [...cartitems];
   let tempCart = [...cartitems];
-  
+
   const index = tempProducts.indexOf(cartitems.find((item) => item._id === id));
-  
+
   let removedProduct = tempProducts[index];
   removedProduct.inCart = false;
   removedProduct.count = 0;
@@ -163,22 +150,22 @@ const removeItem = (id, state) => {
   state.cart = tempCart;
   // console.log(state.cart)
   state.products = tempProducts;
-  lstorage(state)
+  lstorage(state);
   addTotals(state);
   return { ...state };
   // window.location.reload(false)
 };
 const clearCart = (state) => {
-  localStorage.removeItem("cart")
+  localStorage.removeItem("cart");
   state.cart = [];
-  state.cartSubTotal=0;
-  state.cartTotal=0;
-  state.cartTax=0;
+  state.cartSubTotal = 0;
+  state.cartTotal = 0;
+  state.cartTax = 0;
   // state.cartTotal;
   state.products.map((product) => {
     product.inCart = false;
   });
-  lstorage(state)
+  lstorage(state);
   return { ...state };
 };
 const handleDetail = (token, state) => {
@@ -186,13 +173,10 @@ const handleDetail = (token, state) => {
   return { ...state };
 };
 const orderNow = (state) => {
-  
-  const UsER_INF=localStorage.getItem("UsER_INF")
-  const jwt = localStorage.getItem("jwt")
-  if(!jwt||!UsER_INF)
-  {
-    return localStorage.clear()
-    
+  const UsER_INF = localStorage.getItem("UsER_INF");
+  const jwt = localStorage.getItem("jwt");
+  if (!jwt || !UsER_INF) {
+    return localStorage.clear();
   }
 
   console.log(state.cart);
@@ -204,24 +188,24 @@ const orderNow = (state) => {
     },
     body: JSON.stringify({
       products: state.cart,
-      userInfo: localStorage.getItem("USER_INF")
+      userInfo: localStorage.getItem("USER_INF"),
     }),
   })
     .then((res) => res.json())
     .then((data) => {
       if (data.error) {
-        M.toast({html:data.error});
+        M.toast({ html: data.error });
       } else {
-        M.toast({html:data.mssg});
+        M.toast({ html: data.mssg });
       }
     });
-    clearCart(state)
+  clearCart(state);
 
   return { ...state };
 };
 const setUser = (state, action) => {
-    const info =JSON.stringify(action.payload)
-  localStorage.setItem("INFO",info)
+  const info = JSON.stringify(action.payload);
+  localStorage.setItem("INFO", info);
   state.userInfo = action.payload;
   return { ...state };
 };
@@ -231,20 +215,27 @@ const addcategory = (state, action) => {
   return { ...state };
 };
 const clear = (state) => {
-  state.products = [];
-  state.cart = [];
-  state.cartSubTotal = 0;
-  state.cartTax = 0;
-  state.cartTotal = 0;
-  state.catcount = [];
-  state.userInfo = [];
-  state.category = [];
-  state.addcatname = [];
-  state.orderInfo = [];
-  // Cookies.remove('jwt')
-  localStorage.clear()
+ 
+ 
+        state.products = [];
+        state.cart = [];
+        state.cartSubTotal = 0;
+        state.cartTax = 0;
+        state.cartTotal = 0;
+        state.catcount = [];
+        state.userInfo = [];
+        state.category = [];
+        state.addcatname = [];
+        state.orderInfo = [];
+        // Cookies.remove('jwt')
+        localStorage.clear();
+        window.location.reload()
+        
 
-  M.toast({html:"Successfully Logged out",classes:"text-light bg-success"})
+  M.toast({
+    html: "Successfully Logged out",
+    classes: "text-light bg-success",
+  });
   return { ...state };
 };
 const addcatname = (state, action) => {
@@ -252,16 +243,15 @@ const addcatname = (state, action) => {
   return { ...state };
 };
 
-const allorders=(state,action)=>{
-state.allOrders = action.payload
-return {...state}
+const allorders = (state, action) => {
+  state.allOrders = action.payload;
+  return { ...state };
+};
 
-}
-
-const userorder=(state,action)=>{
-  state.userorder = action.payload
-  return{...state}
-}
+const userorder = (state, action) => {
+  state.userorder = action.payload;
+  return { ...state };
+};
 
 export const shopreducer = (state, action) => {
   switch (action.type) {
@@ -306,7 +296,7 @@ export const shopreducer = (state, action) => {
       return allorders(state, action);
     case "ADD_CATNAME":
       return addcatname(state, action);
-      case "USER_ORDER":
-        return userorder(state, action);
+    case "USER_ORDER":
+      return userorder(state, action);
   }
 };

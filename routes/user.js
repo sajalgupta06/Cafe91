@@ -14,6 +14,9 @@ const OrderInfo = require("../models/orderinfo");
 const nodemailer = require("nodemailer")
 const sendgridTransport = require('nodemailer-sendgrid-transport')
 const crypto = require("crypto")
+const localStorage = require("localStorage");
+const { userSignupValidator, userSigninValidator } = require("../validators/auth");
+const { runValidation } = require("../validators");
 
 
 
@@ -28,25 +31,22 @@ const transporter = nodemailer.createTransport(sendgridTransport({
   
 
 
-router.post('/signup', (req, res) => {
-    const { name, email, password, phonenum } = req.body;
-    if (!name || !email || !password || !phonenum) {
+router.post('/signup',userSignupValidator,runValidation, (req, res) => {
+    const { name, email, password} = req.body;
+    if (!name || !email || !password) {
         res.status(422).json({ error: "All fields are required" });
     }
     User.findOne({ email }).then((saveduser) => {
         if (saveduser) {
             return res.json({ error: "Email Already exist" });
+        
         }
-        User.findOne({ phonenum }).then((saveduser) => {
-            if (saveduser) {
-                return res.json({ error: "Phone Number Already exist" });
-            }
             bcrypt.hash(password, 8).then((hashedpass) => {
                 const user = new User({
                     name,
                     password: hashedpass,
                     email,
-                    phonenum,
+                    
                 });
 
                 user
@@ -67,11 +67,11 @@ router.post('/signup', (req, res) => {
                         res.send(error);
                     });
             });
-        });
+        ;
     });
 });
 
-router.post('/signin',(req, res) => {
+router.post('/signin',userSigninValidator,runValidation,(req, res) => {
     const { email, password } = req.body
     if (!email || !password) {
         return res.json({ error: "Please fill the above fields" })
@@ -87,6 +87,7 @@ router.post('/signin',(req, res) => {
          
             const token=jwt.sign({id:saveduser._id},secret_key)
             const {_id} = saveduser
+           
             res.json({token,user:_id})
         })
     }).catch(error => {

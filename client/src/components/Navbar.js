@@ -11,6 +11,7 @@ export default function Navbar() {
   const {state,dispatch} = useContext(cafeContext)
 
   const renderlist=()=>{
+
     const user=localStorage.getItem('jwt')
     const admin=localStorage.getItem('adminjwt')
 
@@ -39,8 +40,7 @@ export default function Navbar() {
       else if(admin){
         return[
           <li key="5" className="nav-item ">
-          <Link to='/' className="nav-link" onClick={()=>{localStorage.clear() 
-            dispatch({type:"CLEAR"})}}>logout</Link>
+          <Link to='/' className="nav-link">logout</Link>
           </li>,
         ]
       }

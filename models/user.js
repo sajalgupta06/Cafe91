@@ -2,27 +2,30 @@
 const mongoose =  require('mongoose')
 
 const userSchema = new mongoose.Schema({
-    googleId:String,
-    
+
     name:{
         type:String,
-        // required:true
+        required:true,
+        min:5,
+        trim: true,
+        max: 32,
+        required: true,
     },
     email:{
-        type:String,
-        // required:true
+        type: String,
+        required: true,
+        trim: true,
+        unique: true,
+        lowercase: true,
     },
     password:{
         type:String,
-        // required:true
+        required:true
     },
     resetToken:String,
     expireToken:Date,
     Date:Date,
-    phonenum:{
-        type:Number,
-        // required:true
-    }
+   
 
 })
 const User = mongoose.model('User',userSchema)
